@@ -3,8 +3,10 @@ import { MemberControllers } from "./member.controller";
 
 const router = express.Router();
 
-router.route("/").post(MemberControllers.createMember);
-//   .get(MemberControllers.findAllMembers);
+router
+  .route("/")
+  .post(MemberControllers.createMember)
+  .get(MemberControllers.findAllMembers);
 
 router.route("/:memberId");
 //   .get(MemberControllers.findMemberById)

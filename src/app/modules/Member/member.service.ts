@@ -9,6 +9,11 @@ const createMemberService = async (payload: IMember) => {
   return member;
 };
 
+const findAllMembersService = async () => {
+  return await prisma.member.findMany();
+};
+
 export const MemeberServices = {
   createMemberService,
+  findAllMembersService,
 };
