@@ -6,11 +6,11 @@ import httpStatus from "http-status";
 
 const createBook = catchAsync(async (req: Request, res: Response) => {
   // const user = req.user;
-  const result = await BookServices.createBookService();
+  const result = await BookServices.createBookService(req.body);
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Review created successfully",
+    message: "Book created successfully",
     data: result,
   });
 });
