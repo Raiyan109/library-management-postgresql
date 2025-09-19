@@ -21,6 +21,27 @@ const findAllBooks = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
+    message: "Books retrieved successfully",
+    data: result,
+  });
+});
+
+const findBookById = catchAsync(async (req: Request, res: Response) => {
+  const {bookId} = req.params;
+
+   if (!bookId) {
+    return sendResponse(res, {
+      statusCode: httpStatus.BAD_REQUEST,
+      success: false,
+      message: "bookId parameter is required",
+      data: null,
+    });
+  }
+  
+  const result = await BookServices.findBookByIdService(bookId);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
     message: "Book retrieved successfully",
     data: result,
   });
@@ -29,4 +50,5 @@ const findAllBooks = catchAsync(async (req: Request, res: Response) => {
 export const BookControllers = {
   createBook,
   findAllBooks,
+  findBookById,
 };
