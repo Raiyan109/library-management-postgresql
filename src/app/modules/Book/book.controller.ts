@@ -68,9 +68,31 @@ const updateBook = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const deleteBook = catchAsync(async (req: Request, res: Response) => {
+  const { bookId } = req.params;
+
+  if (!bookId) {
+    return sendResponse(res, {
+      statusCode: httpStatus.BAD_REQUEST,
+      success: false,
+      message: "bookId parameter is required",
+      data: null,
+    });
+  }
+
+  const result = await BookServices.deleteBookService(bookId);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Book deleted successfully",
+    data: result,
+  });
+});
+
 export const BookControllers = {
   createBook,
   findAllBooks,
   findBookById,
   updateBook,
+  deleteBook,
 };

@@ -11,6 +11,7 @@ router
 router
   .route("/:bookId")
   .get(BookControllers.findBookById)
-  .patch(BookControllers.updateBook);
+  .patch(BookControllers.updateBook)
+  .delete(BookControllers.deleteBook);
 
 export const BookRoutes = router;
