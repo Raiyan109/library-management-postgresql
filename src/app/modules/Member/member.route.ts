@@ -8,9 +8,10 @@ router
   .post(MemberControllers.createMember)
   .get(MemberControllers.findAllMembers);
 
-router.route("/:memberId");
-//   .get(MemberControllers.findMemberById)
-//   .patch(MemberControllers.updateMember)
-//   .delete(MemberControllers.deleteMember);
+router
+  .route("/:memberId")
+  .get(MemberControllers.findMemberById)
+  .patch(MemberControllers.updateMember)
+  .delete(MemberControllers.deleteMember);
 
 export const MemberRoutes = router;
