@@ -14,7 +14,6 @@ const findAllBooksService = async () => {
 };
 
 const findBookByIdService = async (bookId: string) => {
-  console.log(bookId, "bookId book service");
   const result = await prisma.book.findUnique({
     where: {
       bookId,
@@ -42,7 +41,6 @@ const updateBookService = async (bookId: string, payload: Partial<IBook>) => {
 };
 
 const deleteBookService = async (bookId: string) => {
-  console.log(bookId, "bookId book service");
   const result = await prisma.book.delete({
     where: {
       bookId,
