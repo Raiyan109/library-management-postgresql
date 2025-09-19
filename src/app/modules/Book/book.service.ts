@@ -17,9 +17,28 @@ const findBookByIdService = async (bookId: string) => {
   console.log(bookId, "bookId book service");
   const result = await prisma.book.findUnique({
     where: {
-      bookId
-    }
-  })
+      bookId,
+    },
+  });
+
+  return result;
+};
+
+const updateBookService = async (bookId: string, payload: Partial<IBook>) => {
+  console.log(bookId, "bookId book service");
+  console.log(payload, "payload book service");
+  // const book = await prisma.book.findUniqueOrThrow({
+  //   where: {
+  //     bookId: payload.bookId,
+  //   },
+  // });
+
+  const result = await prisma.book.update({
+    where: {
+      bookId,
+    },
+    data: payload,
+  });
 
   return result;
 };
@@ -28,4 +47,5 @@ export const BookServices = {
   createBookService,
   findAllBooksService,
   findBookByIdService,
+  updateBookService,
 };

@@ -27,9 +27,9 @@ const findAllBooks = catchAsync(async (req: Request, res: Response) => {
 });
 
 const findBookById = catchAsync(async (req: Request, res: Response) => {
-  const {bookId} = req.params;
+  const { bookId } = req.params;
 
-   if (!bookId) {
+  if (!bookId) {
     return sendResponse(res, {
       statusCode: httpStatus.BAD_REQUEST,
       success: false,
@@ -37,7 +37,7 @@ const findBookById = catchAsync(async (req: Request, res: Response) => {
       data: null,
     });
   }
-  
+
   const result = await BookServices.findBookByIdService(bookId);
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -47,8 +47,30 @@ const findBookById = catchAsync(async (req: Request, res: Response) => {
   });
 });
 
+const updateBook = catchAsync(async (req: Request, res: Response) => {
+  const { bookId } = req.params;
+
+  if (!bookId) {
+    return sendResponse(res, {
+      statusCode: httpStatus.BAD_REQUEST,
+      success: false,
+      message: "bookId parameter is required",
+      data: null,
+    });
+  }
+
+  const result = await BookServices.updateBookService(bookId, req.body);
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Book updated successfully",
+    data: result,
+  });
+});
+
 export const BookControllers = {
   createBook,
   findAllBooks,
   findBookById,
+  updateBook,
 };
