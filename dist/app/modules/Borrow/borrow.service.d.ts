@@ -1,10 +1,4 @@
 export declare const BorrowServices: {
-    borrowService: (payload: any) => Promise<{
-        bookId: string;
-        memberId: string;
-        borrowId: string;
-        borrowDate: Date;
-        returnDate: Date | null;
-    }>;
+    borrowService: (payload: any) => Promise<any>;
 };
 //# sourceMappingURL=borrow.service.d.ts.map
