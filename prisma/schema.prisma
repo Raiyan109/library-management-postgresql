@@ -24,18 +24,6 @@ enum Role {
   USER
 }
 
-model User {
-  user_name        String     @id @default(uuid())
-  user_phone       String     @unique
-  user_email       String     @unique
-  user_password    String
-  confirm_password String
-  role             Role       @default(USER)
-  user_profile     String?
-  user_address     String?
-  user_status      UserStatus @default(ACTIVE)
-}
-
 model Book {
   bookId          String   @id @default(uuid())
   title           String
@@ -50,7 +38,7 @@ model Member {
   memberId       String   @id @default(uuid())
   name           String
   email          String
-  phone          String
+  phone          String   @unique
   memberShipDate DateTime
   Borrow         Borrow[]
 }

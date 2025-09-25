@@ -5,7 +5,7 @@ const port = 3000;
 
 async function main() {
     const server: Server = app.listen(port, () => {
-        console.log("Prisma starter server is running on port ", port);
+        console.log("library management server is running on port ", port);
     })
 }
 

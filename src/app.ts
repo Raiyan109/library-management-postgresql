@@ -15,7 +15,7 @@ app.use(cookieParser())
 
 app.get('/', (req: Request, res: Response) => {
     res.send({
-        Message: "Prisma starter pack server.."
+        Message: "Library management server.."
     })
 });
 

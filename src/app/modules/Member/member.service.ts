@@ -1,7 +1,21 @@
 import prisma from "../../../shared/prisma";
+import ApiError from "../../errors/ApiError";
 import { IMember } from "./member.interface";
+import httpStatus from "http-status";
 
-const createMemberService = async (payload: IMember) => {
+const createMemberService = async (payload: any) => {
+  // If you want to check for existing member by phone, use findFirst instead of findUnique
+  const existingMember = await prisma.member.findFirst({
+    where: {
+      phone: payload?.phone,
+    },
+  });
+
+  if (existingMember) {
+    throw new ApiError(httpStatus.BAD_REQUEST,"Member with this phone already exists");
+  }
+  console.log(existingMember);
+
   const member = await prisma.member.create({
     data: payload,
   });
